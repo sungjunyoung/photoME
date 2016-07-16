@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Choose your ID"
+        android:text="아이디를 입력하세요"
         android:textSize="18sp"
         android:id="@+id/t1" />
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editUsername"
         android:layout_marginTop="40dp"
-        android:text="Create a password"
+        android:text="비밀번호를 입력하세요"
         android:textSize="18sp"
         android:id="@+id/t2"/>
 
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Confirm your password"
+        android:text="비밀번호를 다시 한번 입력하세요"
         android:id="@+id/t3"
         android:textSize="18sp"
         android:layout_below="@+id/editPassword" />
@@ -58,7 +58,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="다음"
         android:onClick="NextstepClicked"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"

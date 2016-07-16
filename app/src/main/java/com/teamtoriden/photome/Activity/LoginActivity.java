@@ -22,8 +22,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        myId = "z";
-        myPassword = "z";
+        myId = "";
+        myPassword = "";
 
         idText = (EditText) findViewById(R.id.idInput);
         pwText = (EditText) findViewById(R.id.pwInput);
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (idText.getText().toString().equals(id) && pwText.getText().toString().equals(pw)) {
             return true;
-        } else {
+        }else{
             return false;
         }
     }
