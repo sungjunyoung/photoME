@@ -21,25 +21,40 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.teamtoriden.photome.Activity.MainActivity;
 import com.teamtoriden.photome.R;
 
 
 public class MainFragment extends Fragment implements OnMapReadyCallback {
-
-    private static View view;
     private GoogleMap mMap;
+    private View view;
 
+    public MainFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_main, null, false);
+        this.view = inflater.inflate(R.layout.fragment_main, container, false);
 
         SupportMapFragment mapFragment =((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map));
         mapFragment.getMapAsync(this);
         return view;
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+//        if(mMap != null)
+//        {
+//            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.map)).commit();
+//            mMap = null;
+//        }
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

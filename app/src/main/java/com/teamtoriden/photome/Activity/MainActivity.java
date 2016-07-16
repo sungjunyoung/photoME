@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(2);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
