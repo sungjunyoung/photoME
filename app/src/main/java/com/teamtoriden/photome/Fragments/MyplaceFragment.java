@@ -110,8 +110,8 @@ public class MyplaceFragment extends Fragment {
                     Place place = child.getValue(Place.class);
                     int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
                     place.setId(id);
-
-                    collectionList.add(place);
+                    if(place.getFlag())
+                        collectionList.add(place);
 
                 }
             }
