@@ -198,7 +198,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
-        location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         double lat = location.getLatitude();
         double lng = location.getLongitude();
