@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         //비밀번호는 *모양으로 표시
         PasswordTransformationMethod passwdtm = new PasswordTransformationMethod();
         pwText.setTransformationMethod(passwdtm);
+
     }
 
 
