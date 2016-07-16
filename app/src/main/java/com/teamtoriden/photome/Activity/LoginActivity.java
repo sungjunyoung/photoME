@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         CheckBox box = (CheckBox) findViewById(R.id.checkBox);
         box.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
 
-        //String image1 = "traditionalmaket";
+        //String image1 = "5";
         /*Drawable image2 = getResources().getDrawable(R.drawable.ganmonbeach);
         Drawable image3 = getResources().getDrawable(R.drawable.hanbandow);
         Drawable image4 = getResources().getDrawable(R.drawable.ongsim);
