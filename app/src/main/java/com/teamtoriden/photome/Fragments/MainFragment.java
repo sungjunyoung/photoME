@@ -117,41 +117,43 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 })
         );
         // specify an adapter (see also next example)
-        mAdapter = new CollectionAdapter(placeList);
-        mRecyclerView.setAdapter(mAdapter);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("places");
         myRef.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            // This method is called once with the initial value and again
-                                            // whenever data at this location is updated.
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
 
 
-                                            placeList.clear();
-                                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                placeList.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
 
-                                                Log.d("work", "wow");
-                                                Place place = child.getValue(Place.class);
-                                                int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
-                                                place.setId(id);
+                    Log.d("work", "wow");
+                    Place place = child.getValue(Place.class);
+                    int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
+                    place.setId(id);
 
-                                                placeList.add(place);
+                    placeList.add(place);
 
-                                            }
-                                        }
+                }
+            }
 
 
-                                        @Override
-                                        public void onCancelled(DatabaseError error) {
-                                            // Failed to read value
-                                            Log.w("", "Failed to read value.", error.toException());
-                                        }
-                                    }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("", "Failed to read value.", error.toException());
+            }
+        }
 
         );
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map));
         mapFragment.getMapAsync(this);
+
+
+        mAdapter = new CollectionAdapter(placeList);
+        mRecyclerView.setAdapter(mAdapter);
 
 
         return view;
