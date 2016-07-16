@@ -49,7 +49,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         Place collection = collectionList.get(position);
         holder.name.setText(collection.getName());
         holder.description.setText(collection.getDescription());
-        holder.image.setImageDrawable(collection.getImage());
+        holder.image.setImageResource(collection.getId());
 
     }
 

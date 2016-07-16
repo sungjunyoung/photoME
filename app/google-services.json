@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1048322333013",
+    "firebase_url": "https://photome-3dbc1.firebaseio.com",
+    "project_id": "photome-3dbc1",
+    "storage_bucket": "photome-3dbc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048322333013:android:42acd9929ffe77b8",
+        "android_client_info": {
+          "package_name": "com.teamtoriden.photome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048322333013-rmrc32q392t3ur3c3mos4qcr86em0upr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPBNk42vbfTZv5CRJjg3R12iKoeoycuo8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

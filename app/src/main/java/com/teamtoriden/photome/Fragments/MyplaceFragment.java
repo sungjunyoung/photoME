@@ -11,6 +11,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DrawableUtils;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.teamtoriden.photome.Activity.IntroduceActivity;
 import com.teamtoriden.photome.Adapter.CollectionAdapter;
 import com.teamtoriden.photome.Class.Place;
@@ -30,37 +36,30 @@ import java.util.List;
 public class MyplaceFragment extends Fragment {
 
     private List<Place> collectionList = new ArrayList<>();
+
     private RecyclerView recyclerView;
     private CollectionAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+
+    private Context context;
+
     public MyplaceFragment() {
         // Required empty public constructor
+
     }
-
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        Drawable image1 = getResources().getDrawable(R.drawable.cotdeung);
-        Drawable image2 = getResources().getDrawable(R.drawable.ganmonbeach);
-        Drawable image3 = getResources().getDrawable(R.drawable.hanbandow);
-        Drawable image4 = getResources().getDrawable(R.drawable.ongsim);
-        Drawable image5 = getResources().getDrawable(R.drawable.skijump);
-
-        collectionList.add(new Place("올림픽경기장","올림픽 경기를 합니다",image1));
-        collectionList.add(new Place("올림픽경기장1","올림픽 경기를 합니다3", image2));
-        collectionList.add(new Place("올림픽경기장2","올림픽 경기를 합니다3", image3));
-        collectionList.add(new Place("올림픽경기장3","올림픽 경기를 합니다3", image4));
-        collectionList.add(new Place("올림픽경기장4","올림픽 경기를 합니다3", image5));
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_myplace, container, false);
-        Context context = view.getContext();
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        context = view.getContext();
 
+
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(context);
@@ -68,8 +67,9 @@ public class MyplaceFragment extends Fragment {
         // specify an adapter (see also next example)
 
         mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                new RecyclerItemClickListener(context, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
                         TextView nameTemp = (TextView) view.findViewById(R.id.name);
                         TextView descriptionTemp = (TextView) view.findViewById(R.id.description);
                         ImageView imageViewtemp = (ImageView) view.findViewById(R.id.content_image);
@@ -77,14 +77,15 @@ public class MyplaceFragment extends Fragment {
 
                         Intent intent = new Intent(getActivity(), IntroduceActivity.class);
 
-                        intent.putExtra("name",nameTemp.getText().toString());
-                        intent.putExtra("description",descriptionTemp.getText().toString());
+                        intent.putExtra("name", nameTemp.getText().toString());
+                        intent.putExtra("description", descriptionTemp.getText().toString());
 
 
                         startActivity(intent);
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override
+                    public void onLongItemClick(View view, int position) {
                         // do whatever
                     }
                 })
@@ -93,6 +94,37 @@ public class MyplaceFragment extends Fragment {
         mAdapter = new CollectionAdapter(collectionList);
         mRecyclerView.setAdapter(mAdapter);
 
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("places");
+        myRef.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            // This method is called once with the initial value and again
+                                            // whenever data at this location is updated.
+
+                                            collectionList.clear();
+                                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+
+                                                Log.d("work", "wow");
+                                                Place place = child.getValue(Place.class);
+                                                int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
+                                                place.setId(id);
+
+                                                collectionList.add(place);
+
+                                            }
+                                        }
+
+
+                                        @Override
+                                        public void onCancelled(DatabaseError error) {
+                                            // Failed to read value
+                                            Log.w("", "Failed to read value.", error.toException());
+                                        }
+                                    }
+
+        );
 
         return view;
     }

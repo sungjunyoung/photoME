@@ -1,7 +1,6 @@
 package com.teamtoriden.photome.Class;
 
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 
 /**
  * Created by Junyoung on 16. 6. 28..
@@ -9,33 +8,26 @@ import android.media.Image;
 public class Place {
     private String name;
     private String description;
-    private int x;
-    private Drawable image;
+    private double x;
+    private double y;
+    private String image;
+    private boolean flag;
+    private int id;
 
-    private int y;
+    public Place(){
 
-    public Place(String name, String description){
-        this.name = name;
-        this.description = description;
-        this.x = 0;
-        this.y = 0;
-        this.image = null;
-    }
-    public Place(String name, String description, Drawable image){
-        this.name = name;
-        this.description = description;
-        this.x = 0;
-        this.y = 0;
-        this.image = image;
     }
 
-    public Place(String name, String description, int x, int y, Drawable image) {
+    public Place(String name, String description, String image, boolean flag, double x, double y) {
         this.name = name;
         this.description = description;
         this.x = x;
         this.y = y;
         this.image = image;
+        this.flag = flag;
+        this.id = -1;
     }
+
 
     public String getName() {
         return name;
@@ -53,28 +45,44 @@ public class Place {
         this.description = description;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public Drawable getImage() {
+    public String getImage() {
         return image;
     }
 
 
-    public void setImage(Drawable image) {
+    public void setImage(String image) {
         this.image = image;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

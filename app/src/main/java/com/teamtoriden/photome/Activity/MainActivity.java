@@ -1,5 +1,6 @@
 package com.teamtoriden.photome.Activity;
 
+import android.os.Parcelable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import com.teamtoriden.photome.Class.Place;
 import com.teamtoriden.photome.Fragments.MainFragment;
 import com.teamtoriden.photome.Fragments.MyplaceFragment;
 import com.teamtoriden.photome.Fragments.StatusFragment;
@@ -23,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ArrayList<Place> placeList;
 
+    private MainFragment mainFragment;
+    private MyplaceFragment myplaceFragment;
+    private StatusFragment statusFragment;
     private int[] tabIcons = {
             R.drawable.ic_tab_favourite,
             R.drawable.ic_tab_call,
@@ -34,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainFragment = new MainFragment();
+        myplaceFragment = new MyplaceFragment();
+        statusFragment = new StatusFragment();
+
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -56,9 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new MainFragment(), "MAIN");
-        adapter.addFrag(new MyplaceFragment(), "MYPLACE");
-        adapter.addFrag(new StatusFragment(), "STATUS");
+
+        adapter.addFrag(mainFragment, "MAIN");
+        adapter.addFrag(myplaceFragment, "MYPLACE");
+        adapter.addFrag(statusFragment, "STATUS");
         viewPager.setAdapter(adapter);
     }
 
@@ -68,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
+
+
         }
 
         @Override
