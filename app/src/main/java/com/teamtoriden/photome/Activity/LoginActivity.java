@@ -1,11 +1,10 @@
 package com.teamtoriden.photome.Activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,12 +22,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        //id, pw 미리 123123로 정해둠
         myId = "123123";
         myPassword = "123123";
 
         idText = (EditText) findViewById(R.id.idInput);
         pwText = (EditText) findViewById(R.id.pwInput);
 
+        //비밀번호는 *모양으로 표시
+        PasswordTransformationMethod passwdtm = new PasswordTransformationMethod();
+        pwText.setTransformationMethod(passwdtm);
     }
 
 
@@ -55,4 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void SignupClicked(View view) {
+        Intent intent2 = new Intent(getApplicationContext(), SignupActivity.class);
+        startActivity(intent2);
+    }
 }
