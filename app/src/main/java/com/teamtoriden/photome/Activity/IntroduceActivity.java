@@ -1,6 +1,7 @@
 package com.teamtoriden.photome.Activity;
 
 import android.media.Image;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -15,9 +16,13 @@ public class IntroduceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduce);
 
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         String name = getIntent().getStringExtra("name");
         String description = getIntent().getStringExtra("description");
 

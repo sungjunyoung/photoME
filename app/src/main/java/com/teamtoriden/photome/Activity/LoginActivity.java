@@ -3,6 +3,7 @@ package com.teamtoriden.photome.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -37,6 +38,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("places");
@@ -78,11 +83,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void writeNewPlace(String name, String description, String image,boolean flag , double longitude, double latitude) {
-        Place place = new Place(name, description, image, flag , longitude, latitude);
+    private void writeNewPlace(String name, String description, String image, boolean flag, double longitude, double latitude) {
+        Place place = new Place(name, description, image, flag, longitude, latitude);
         myRef.push().setValue(place);
     }
-
 
 
     public boolean loginCheck(String id, String pw) {

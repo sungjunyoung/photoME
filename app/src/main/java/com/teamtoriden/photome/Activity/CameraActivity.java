@@ -8,6 +8,7 @@ import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,10 +41,15 @@ public class CameraActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_camera);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         mContext = this;
 
         // 카메라 사용여부 체크
