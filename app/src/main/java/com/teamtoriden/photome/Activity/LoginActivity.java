@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         //비밀번호는 *모양으로 표시
         PasswordTransformationMethod passwdtm = new PasswordTransformationMethod();
         pwText.setTransformationMethod(passwdtm);
+        
 
         //saymael로 글꼴 변경
         Button button1 = (Button) findViewById(R.id.loginButton);
