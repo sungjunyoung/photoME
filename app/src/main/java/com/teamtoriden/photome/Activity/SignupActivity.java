@@ -31,14 +31,14 @@ public class SignupActivity extends AppCompatActivity {
         confirmPw.setTransformationMethod(passwdtm);
 
         //saymael으로 폰트 변경
-        TextView textView1 = (TextView) findViewById(R.id.t1);
-        textView1.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
+        EditText View1 = (EditText) findViewById(R.id.editUsername);
+        View1.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
 
-        TextView textView2 = (TextView) findViewById(R.id.t2);
-        textView2.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
+        EditText View2 = (EditText) findViewById(R.id.editPassword);
+        View2.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
 
-        TextView textView3 = (TextView) findViewById(R.id.t3);
-        textView3.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
+        EditText View3 = (EditText) findViewById(R.id.editConfirm);
+        View3.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
 
         Button Button1 = (Button) findViewById(R.id.button);
         Button1.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
