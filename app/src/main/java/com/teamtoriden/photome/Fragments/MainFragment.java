@@ -52,13 +52,12 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private View view;
     private LatLng myLocation;
-
-
     private RecyclerView recyclerView;
     private List<Place> placeList = new ArrayList<>();
     private CollectionAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private markOnMap sample[]; //샘플마커
+
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private Context context;
@@ -74,10 +73,20 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_main, container, false);
+
         context = view.getContext();
 
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.main_recycler_view);
+
+        mRecyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(context);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        // specify an adapter (see also next example)
+        mAdapter = new CollectionAdapter(placeList);
+        mRecyclerView.setAdapter(mAdapter);
+
 
         mRecyclerView.setHasFixedSize(true);
         // use a linear layout manager
@@ -113,32 +122,32 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("places");
         myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            // This method is called once with the initial value and again
+                                            // whenever data at this location is updated.
 
 
-                placeList.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                            placeList.clear();
+                                            for (DataSnapshot child : dataSnapshot.getChildren()) {
 
-                    Log.d("work", "wow");
-                    Place place = child.getValue(Place.class);
-                    int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
-                    place.setId(id);
+                                                Log.d("work", "wow");
+                                                Place place = child.getValue(Place.class);
+                                                int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
+                                                place.setId(id);
 
-                    placeList.add(place);
+                                                placeList.add(place);
 
-                }
-            }
+                                            }
+                                        }
 
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("", "Failed to read value.", error.toException());
-            }
-        }
+                                        @Override
+                                        public void onCancelled(DatabaseError error) {
+                                            // Failed to read value
+                                            Log.w("", "Failed to read value.", error.toException());
+                                        }
+                                    }
 
         );
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map));
@@ -194,6 +203,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         sample[1] = new markOnMap(37.51013, 127.0438243, "지하철역");
         sample[2] = new markOnMap(37.508632, 127.049052, "선정릉");
         for (int i = 0; i < 3; i++) {
+
             mMap.addMarker(new MarkerOptions() //예제
                     .position(sample[i].getLatlng())
                     .title(sample[i].getMarkTitle()));
@@ -206,9 +216,8 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             }
 
         });
-    }
 
-    ;
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
