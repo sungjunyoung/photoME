@@ -1,10 +1,13 @@
 package com.teamtoriden.photome.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,25 +34,26 @@ public class LoginActivity extends AppCompatActivity {
         //비밀번호는 *모양으로 표시
         PasswordTransformationMethod passwdtm = new PasswordTransformationMethod();
         pwText.setTransformationMethod(passwdtm);
+
+        //saymael로 글꼴 변경
+        Button button1 = (Button) findViewById(R.id.loginButton);
+        button1.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
+
+        Button button2 = (Button) findViewById(R.id.signupButton);
+        button2.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
+
+        CheckBox box = (CheckBox) findViewById(R.id.checkBox);
+        box.setTypeface(Typeface.createFromAsset(getAssets(), "saymael.ttf"));
     }
 
 
     public boolean loginCheck(String id, String pw) {
-
-        if (idText.getText().toString().equals(id) && pwText.getText().toString().equals(pw)) {
-            return true;
-        }else{
-            return false;
-        }
+        return idText.getText().toString().equals(id) && pwText.getText().toString().equals(pw);
     }
 
     public void LoginClicked(View view) {
-
-        //isCheckTrue에 loginCheck함수에서 나온 결과 대입
-
-
         if (!loginCheck(myId, myPassword)) {
-            Toast.makeText(LoginActivity.this, "The email and password you entered don't match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "아이디와 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
         } else {
             //MainActivity로 이동
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -58,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void SignupClicked(View view) {
+        //SignupActivity로 이동
         Intent intent2 = new Intent(getApplicationContext(), SignupActivity.class);
         startActivity(intent2);
     }

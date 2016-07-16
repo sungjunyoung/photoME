@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#CCCCCC"
     tools:context="com.teamtoriden.photome.Activity.LoginActivity">
 
     <TextView
@@ -22,14 +23,17 @@
         android:id="@+id/idInput"
         android:layout_centerHorizontal="true"
         android:hint="ID"
+        android:background="#FFFFFF"
         android:layout_marginTop="200dp"/>
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/pwInput"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:hint="Password"
+        android:background="#FFFFFF"
         android:layout_below="@+id/idInput"/>
 
     <Button
