@@ -35,8 +35,6 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
             name = (TextView) itemView.findViewById(R.id.name);
             description = (TextView) itemView.findViewById(R.id.description);
             image = (ImageView) itemView.findViewById(R.id.image);
-
-
         }
     }
 
@@ -51,7 +49,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         Place collection = collectionList.get(position);
         holder.name.setText(collection.getName());
         holder.description.setText(collection.getDescription());
-        //holder.image.setImageResource(collection.getImage());
+        holder.image.setImageDrawable(collection.getImage());
 
     }
 

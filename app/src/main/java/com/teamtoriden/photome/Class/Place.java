@@ -1,5 +1,6 @@
 package com.teamtoriden.photome.Class;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 /**
@@ -9,7 +10,7 @@ public class Place {
     private String name;
     private String description;
     private int x;
-    private Image image;
+    private Drawable image;
 
     private int y;
 
@@ -18,13 +19,22 @@ public class Place {
         this.description = description;
         this.x = 0;
         this.y = 0;
+        this.image = null;
+    }
+    public Place(String name, String description, Drawable image){
+        this.name = name;
+        this.description = description;
+        this.x = 0;
+        this.y = 0;
+        this.image = image;
     }
 
-    public Place(String name, String description, int x, int y) {
+    public Place(String name, String description, int x, int y, Drawable image) {
         this.name = name;
         this.description = description;
         this.x = x;
         this.y = y;
+        this.image = image;
     }
 
     public String getName() {
@@ -59,12 +69,12 @@ public class Place {
         this.y = y;
     }
 
-    public Image getImage() {
+    public Drawable getImage() {
         return image;
     }
 
 
-    public void setImage(Image image) {
+    public void setImage(Drawable image) {
         this.image = image;
     }
 }
