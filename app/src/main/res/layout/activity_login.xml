@@ -52,6 +52,7 @@
         android:layout_height="55dp"
         android:text="Sign Up"
         android:id="@+id/signupButton"
+        android:onClick="SignupClicked"
         android:textAllCaps="false"
         android:layout_alignTop="@+id/loginButton"
         android:layout_alignRight="@+id/pwInput"
