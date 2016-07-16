@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:weightSum="1"
     tools:context="com.teamtoriden.photome.Activity.CameraActivity">
 
@@ -15,30 +14,15 @@
         android:layout_height="0dp"
         android:layout_weight="0.9" />
 
-    <LinearLayout
+
+    <Button
+        android:background="@color/colorPrimary"
+        android:textColor="@color/common_plus_signin_btn_text_dark_default"
+        android:id="@+id/button_capture"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:paddingTop="10dp"
-            android:text="이름"
-            android:textAlignment="center"
-            android:layout_marginLeft="10dp"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/button_capture"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:layout_marginRight="10dp"
-            android:text="촬영" />
-    </LinearLayout>
+        android:text="TO YOUR COLLECTION!"
+        android:textSize="20sp"/>
 
 </LinearLayout>
