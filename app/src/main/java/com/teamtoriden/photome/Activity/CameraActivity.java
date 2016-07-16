@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.teamtoriden.photome.R;
 
 import java.io.File;
@@ -37,6 +39,9 @@ public class CameraActivity extends AppCompatActivity{
     private Camera mCamera;
     private CameraPreview mPreview;
 
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,8 @@ public class CameraActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_camera);
 
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("places");
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -136,6 +143,10 @@ public class CameraActivity extends AppCompatActivity{
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             // JPEG 이미지가 byte[] 형태로 들어옵니다.
+
+            String taskName = "-KMoAFKBfO3kDyu-CXus";
+            DatabaseReference objRef = myRef.child(taskName);
+            objRef.child("flag").setValue(true);
 
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);

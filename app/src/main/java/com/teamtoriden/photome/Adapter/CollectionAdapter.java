@@ -20,8 +20,6 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 
     private List<Place> collectionList;
 
-
-
     public CollectionAdapter(List<Place> collectionList) {
         this.collectionList = collectionList;
     }
