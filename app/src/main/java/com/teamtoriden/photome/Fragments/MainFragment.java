@@ -137,7 +137,6 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     Place place = child.getValue(Place.class);
                     int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
                     place.setId(id);
-                    placeList.add(place);
                     place.setDistnace(calDistance(location.getLatitude(),location.getLongitude(),place.getX(),place.getY()));
                     placeList.add(place);
                     mMap.addMarker(new MarkerOptions() //예제
