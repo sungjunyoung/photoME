@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.teamtoriden.photome.Class.Place;
 import com.teamtoriden.photome.R;
@@ -19,6 +20,8 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 
     private List<Place> collectionList;
 
+
+
     public CollectionAdapter(List<Place> collectionList) {
         this.collectionList = collectionList;
     }
@@ -27,11 +30,13 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         public TextView name, description;
         public ImageView image;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             description = (TextView) itemView.findViewById(R.id.description);
             image = (ImageView) itemView.findViewById(R.id.image);
+
+
         }
     }
 
