@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#ffffff"
     tools:context="com.teamtoriden.photome.Fragments.StatusFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -54,7 +54,7 @@
         android:layout_alignStart="@+id/mid"
         android:layout_below="@+id/mid"
         android:layout_marginTop="20dp"
-        android:text="방문한 곳:  10/40"
+        android:text="방문한 곳:  6/40"
         android:textSize="30sp" />
 
     <Button
@@ -64,9 +64,9 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3"
         android:layout_below="@+id/textView3"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:background="#ffffff"
-        android:text="페이스북에 공유하기" />
+        android:text=" 페이스북에 공유하기 " />
 
     <TextView
         android:id="@+id/textView3"
@@ -88,4 +88,18 @@
         android:background="#ffffff"
         android:layout_marginLeft="10dp"
         android:text="포토북 신청" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:background="@drawable/pylogo"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/fb" />
+    
+
 </RelativeLayout>
