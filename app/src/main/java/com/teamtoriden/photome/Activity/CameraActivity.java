@@ -136,28 +136,9 @@ public class CameraActivity extends AppCompatActivity{
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             // JPEG 이미지가 byte[] 형태로 들어옵니다.
-            File pictureFile = getOutputMediaFile();
-            if(pictureFile == null){
-                Toast.makeText(mContext, "Error camera image saving", Toast.LENGTH_SHORT).show();
-                return;
-            }
 
-            ///////////////////////////////////////
-
-            //intent
-            //////////////////////////////////////
-
-            try{
-                FileOutputStream fos = new FileOutputStream(pictureFile);
-                fos.write(data);
-                fos.close();
-                //Thread.sleep(500);
-                mCamera.startPreview();
-            } catch (FileNotFoundException e) {
-                Log.d(TAG, "File not found: " + e.getMessage());
-            } catch (IOException e) {
-                Log.d(TAG, "Error accessing file: " + e.getMessage());
-            }
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
         }
     };
 }
