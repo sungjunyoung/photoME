@@ -37,6 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.teamtoriden.photome.Activity.CameraActivity;
 import com.teamtoriden.photome.Activity.IntroduceActivity;
 import com.teamtoriden.photome.Activity.MainActivity;
 
@@ -145,7 +146,10 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
-
+                            if(calDistance(location.getLatitude(),location.getLongitude(),marker.getPosition().latitude,marker.getPosition().longitude) < 100){
+                                Intent intent = new Intent(getActivity(), CameraActivity.class);
+                                startActivity(intent);
+                            }
                             return false;
                         }
 
@@ -195,17 +199,18 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            mMap.setMyLocationEnabled(true);
         }
 
+        mMap.setMyLocationEnabled(true);
 
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         double lat = location.getLatitude();
         double lng = location.getLongitude();
         LatLng cameraLatlng = new LatLng(lat, lng);
-        mMap.setMyLocationEnabled(true);
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraLatlng, 12));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 1500, null);
         // Add a marker in Sydney and move the camera

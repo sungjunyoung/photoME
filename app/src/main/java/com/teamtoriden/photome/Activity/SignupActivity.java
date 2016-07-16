@@ -1,6 +1,7 @@
 package com.teamtoriden.photome.Activity;
 
 import android.graphics.Typeface;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -22,6 +23,10 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         Pw = (EditText) findViewById(R.id.editPassword);
         confirmPw = (EditText) findViewById(R.id.editConfirm);
         PasswordTransformationMethod passwdtm = new PasswordTransformationMethod();
