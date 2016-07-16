@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        myId = "123123";
-        myPassword = "123123";
+        myId = "z";
+        myPassword = "z";
 
         idText = (EditText) findViewById(R.id.idInput);
         pwText = (EditText) findViewById(R.id.pwInput);
