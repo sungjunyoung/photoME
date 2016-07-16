@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#CCCCCC"
     tools:context="com.teamtoriden.photome.Activity.LoginActivity">
 
     <TextView
@@ -14,31 +15,31 @@
         android:layout_height="wrap_content"
         android:text="LOGO"
         android:textSize="50sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/checkBox"
-        android:layout_alignStart="@+id/checkBox"
-        android:layout_marginTop="76dp" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/idInput"
         android:layout_centerHorizontal="true"
-        android:hint="Email"
+        android:hint="ID"
+        android:background="#FFFFFF"
         android:layout_marginTop="200dp"/>
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/pwInput"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:hint="Password"
+        android:background="#FFFFFF"
         android:layout_below="@+id/idInput"/>
 
     <Button
         android:layout_width="150dp"
         android:layout_height="55dp"
-        android:text="Login"
+        android:text="로그인"
         android:id="@+id/loginButton"
         android:textAllCaps="false"
         android:onClick="LoginClicked"
@@ -50,7 +51,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="55dp"
-        android:text="Sign Up"
+        android:text="회원가입"
         android:id="@+id/signupButton"
         android:onClick="SignupClicked"
         android:textAllCaps="false"
@@ -61,7 +62,7 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remember Login"
+        android:text="로그인 상태 유지"
         android:id="@+id/checkBox"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/loginButton"
