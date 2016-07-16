@@ -1,5 +1,6 @@
 package com.teamtoriden.photome.Adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +59,9 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> 
                 .doubleValue();
         String temp = Double.toString(truncatedDouble)+"m";
         holder.distance.setText(temp);
+        if(!collection.getFlag()){
+            holder.name.setTextColor(0xFFB7B7B7);
+        }
     }
 
     @Override

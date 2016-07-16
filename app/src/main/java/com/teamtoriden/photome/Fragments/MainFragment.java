@@ -47,6 +47,8 @@ import com.teamtoriden.photome.Class.RecyclerItemClickListener;
 import com.teamtoriden.photome.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -140,6 +142,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     place.setId(id);
                     place.setDistnace(calDistance(location.getLatitude(),location.getLongitude(),place.getX(),place.getY()));
                     placeList.add(place);
+                    Collections.sort(placeList,new DisDescCompare());
                     mMap.addMarker(new MarkerOptions() //예제
                             .position(new LatLng(place.getX(),place.getY()))
                             .title((place.getName())));
@@ -263,6 +266,21 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             return (double)(rad * (double)180d / Math.PI);
         }
 
+    static class DisDescCompare implements Comparator<Place> {
+        /**
+         * 오름차순(ASC)
+         */
+        @Override
+        public int compare(Place first, Place second) {
+            // TODO Auto-generated method stub
+            if(!first.getFlag() && second.getFlag()) return -1;
+            else if(first.getFlag() && !second.getFlag()) return 1;
+            else{
+                return first.getDistnace() < second.getDistnace() ? -1 : first.getDistnace() > second.getDistnace() ? 1 : 0;
+            }
+        }
+
+    }
 }
 
 class markOnMap {//맵에 마크 객체

@@ -81,7 +81,7 @@ public class Place {
         this.image = image;
     }
 
-    public boolean isFlag() {
+    public boolean getFlag() {
         return flag;
     }
 
