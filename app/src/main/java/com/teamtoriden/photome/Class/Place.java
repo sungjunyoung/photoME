@@ -13,6 +13,16 @@ public class Place {
     private String image;
     private boolean flag;
     private int id;
+    private double distance;
+
+    public double getDistnace() {
+        return distance;
+    }
+
+    public void setDistnace(double distnace) {
+        this.distance = distnace;
+    }
+
 
     public Place(){
 
@@ -26,6 +36,7 @@ public class Place {
         this.image = image;
         this.flag = flag;
         this.id = -1;
+        this.distance = 0.f;
     }
 
 

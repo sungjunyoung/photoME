@@ -39,7 +39,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.teamtoriden.photome.Activity.IntroduceActivity;
 import com.teamtoriden.photome.Activity.MainActivity;
-import com.teamtoriden.photome.Adapter.CollectionAdapter;
+
+import com.teamtoriden.photome.Adapter.PlaceAdapter;
 import com.teamtoriden.photome.Class.Place;
 import com.teamtoriden.photome.Class.RecyclerItemClickListener;
 import com.teamtoriden.photome.R;
@@ -54,13 +55,16 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     private LatLng myLocation;
     private RecyclerView recyclerView;
     private List<Place> placeList = new ArrayList<>();
-    private CollectionAdapter mAdapter;
+    private PlaceAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private markOnMap sample[]; //샘플마커
+
+    private Location location; //mylocation
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private Context context;
+    private boolean flag;
 
     public MainFragment() {
     }
@@ -84,7 +88,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         mLayoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(mLayoutManager);
         // specify an adapter (see also next example)
-        mAdapter = new CollectionAdapter(placeList);
+        mAdapter = new PlaceAdapter(placeList);
         mRecyclerView.setAdapter(mAdapter);
 
 
@@ -117,45 +121,54 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 })
         );
         // specify an adapter (see also next example)
-        mAdapter = new CollectionAdapter(placeList);
-        mRecyclerView.setAdapter(mAdapter);
+
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("places");
         myRef.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            // This method is called once with the initial value and again
-                                            // whenever data at this location is updated.
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                placeList.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+
+                    Log.d("work", "wow");
+                    Place place = child.getValue(Place.class);
+                    int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
+                    place.setId(id);
+                    place.setDistnace(calDistance(location.getLatitude(),location.getLongitude(),place.getX(),place.getY()));
+                    placeList.add(place);
+                    mMap.addMarker(new MarkerOptions() //예제
+                            .position(new LatLng(place.getX(),place.getY()))
+                            .title((place.getName())));
+                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker marker) {
+
+                            return false;
+                        }
+
+                    });
+                }
+            }
 
 
-                                            placeList.clear();
-                                            for (DataSnapshot child : dataSnapshot.getChildren()) {
-
-                                                Log.d("work", "wow");
-                                                Place place = child.getValue(Place.class);
-                                                int id = context.getResources().getIdentifier(place.getImage(), "drawable", context.getPackageName());
-                                                place.setId(id);
-
-                                                placeList.add(place);
-
-                                            }
-                                        }
-
-
-                                        @Override
-                                        public void onCancelled(DatabaseError error) {
-                                            // Failed to read value
-                                            Log.w("", "Failed to read value.", error.toException());
-                                        }
-                                    }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("", "Failed to read value.", error.toException());
+            }
+        }
 
         );
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map));
         mapFragment.getMapAsync(this);
-
-
+        mAdapter = new PlaceAdapter(placeList);
+        mRecyclerView.setAdapter(mAdapter);
         return view;
     }
+
+
 
     @Override
     public void onDestroyView() {
@@ -185,39 +198,17 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-        //double lat = location.getLatitude();
-        //double lng = location.getLongitude();
-        //LatLng cameraLatlng = new LatLng(lat, lng);
-        mMap.setMyLocationEnabled(true);
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraLatlng, 12));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 1500, null);
+        location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
 
-        setMarker();
+        double lat = location.getLatitude();
+        double lng = location.getLongitude();
+        LatLng cameraLatlng = new LatLng(lat, lng);
+        mMap.setMyLocationEnabled(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraLatlng, 12));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 1500, null);
         // Add a marker in Sydney and move the camera
     }
 
-    public void setMarker() { //여기에 마커 하나씩 추가
-        sample = new markOnMap[3];
-        sample[0] = new markOnMap(37.508498, 127.045882, "선릉");
-        sample[1] = new markOnMap(37.51013, 127.0438243, "지하철역");
-        sample[2] = new markOnMap(37.508632, 127.049052, "선정릉");
-        for (int i = 0; i < 3; i++) {
-
-            mMap.addMarker(new MarkerOptions() //예제
-                    .position(sample[i].getLatlng())
-                    .title(sample[i].getMarkTitle()));
-        }
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-
-                return false;
-            }
-
-        });
-
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -238,8 +229,32 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-// 상태가 변경되었을 시 ( ex. gps->3g )
+    // 상태가 변경되었을 시 ( ex. gps->3g )
+    public double calDistance(double lat1, double lon1, double lat2, double lon2){
 
+        double theta, dist;
+        theta = lon1 - lon2;
+        dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1))
+                * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;    // 단위 mile 에서 km 변환.
+        dist = dist * 1000.0;      // 단위  km 에서 m 로 변환
+
+        return dist;
+    }
+
+        // 주어진 도(degree) 값을 라디언으로 변환
+        private double deg2rad(double deg){
+            return (double)(deg * Math.PI / (double)180d);
+        }
+
+        // 주어진 라디언(radian) 값을 도(degree) 값으로 변환
+        private double rad2deg(double rad){
+            return (double)(rad * (double)180d / Math.PI);
+        }
 
 }
 
