@@ -7,24 +7,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#CCCCCC"
     tools:context="com.teamtoriden.photome.Activity.LoginActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGO"
-        android:textSize="50sp"
-        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/mainlogo"
+        android:id="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/idInput"
         android:layout_centerHorizontal="true"
-        android:hint="ID"
-        android:background="#FFFFFF"
-        android:layout_marginTop="200dp"/>
+        android:hint="  아이디"
+
+        android:layout_marginTop="370dp"
+        />
 
     <EditText
         android:layout_width="300dp"
@@ -32,8 +33,7 @@
         android:id="@+id/pwInput"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
-        android:hint="Password"
-        android:background="#FFFFFF"
+        android:hint="  패스워드"
         android:layout_below="@+id/idInput"/>
 
     <Button
