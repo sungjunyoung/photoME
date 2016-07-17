@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         myRef = database.getReference("places");
         //prepareMessageData();
 
-        myId = "";
-        myPassword = "";
+        myId = "wnsdud1861";
+        myPassword = "1234";
 
         idText = (EditText) findViewById(R.id.idInput);
         pwText = (EditText) findViewById(R.id.pwInput);

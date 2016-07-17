@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.teamtoriden.photome.R;
@@ -51,6 +52,7 @@ public class CameraActivity extends AppCompatActivity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_camera);
+
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("places");
@@ -142,11 +144,13 @@ public class CameraActivity extends AppCompatActivity{
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-            // JPEG 이미지가 byte[] 형태로 들어옵니다.
+            // JPEG 이미지가 byte[] 형태로 들어옵니다.facebookshare.png
 
             String taskName = "-KMoAFKBfO3kDyu-CXus";
             DatabaseReference objRef = myRef.child(taskName);
             objRef.child("flag").setValue(true);
+
+            Toast.makeText(getApplicationContext(),"새로운 평창의 아름다움을 수집하셨습니다!",Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);

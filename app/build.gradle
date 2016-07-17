@@ -20,7 +20,11 @@ android {
 }
 
 repositories {
-    maven { url "http://jzaccone.github.io/SlidingMenu-aar" }
+    maven {
+        url "http://jzaccone.github.io/SlidingMenu-aar"
+        mavenCentral()
+
+    }
 }
 
 dependencies {
@@ -31,6 +35,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.google.android.gms:play-services-maps:9.2.0'
     compile 'com.google.firebase:firebase-database:9.2.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
 }
 
 apply plugin: 'com.google.gms.google-services'

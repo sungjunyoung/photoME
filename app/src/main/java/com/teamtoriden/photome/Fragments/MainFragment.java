@@ -239,7 +239,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    // 상태가 변경되었을 시 ( ex. gps->3g )
+    // 상태가 변경되었을 시 ( ex. ic_tab_favourite->3g )
     public double calDistance(double lat1, double lon1, double lat2, double lon2){
 
         double theta, dist;

@@ -1,8 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:orientation="vertical"
     tools:context="com.teamtoriden.photome.Fragments.StatusFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,36 +16,38 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:text="현재 수행도"
-        android:textSize="50sp" />
+        android:text="나의 수집장소"
+        android:textStyle="bold"
+        android:textSize="40sp" />
 
     <TextView
         android:id="@+id/mid"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:textAlignment="textEnd"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/Status"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:text="성준영"
-        android:textSize="50sp" />
+        android:text="wnsdud1861"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/mid"
-
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="3dp"
-        android:layout_toEndOf="@+id/mid"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="20dp"
+        android:textAlignment="textEnd"
         android:text=" in pyeongchang"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -54,19 +57,10 @@
         android:layout_alignStart="@+id/mid"
         android:layout_below="@+id/mid"
         android:layout_marginTop="20dp"
-        android:text="방문한 곳:  6/40"
+        android:layout_marginLeft="20dp"
+        android:text="방문한 곳 :  6 / 40"
         android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/fb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="20dp"
-        android:background="#ffffff"
-        android:text=" 페이스북에 공유하기 " />
 
     <TextView
         android:id="@+id/textView3"
@@ -76,30 +70,30 @@
         android:layout_alignStart="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="10dp"
-        android:text="**15곳 이상 방문 시 포토북 신청가능" />
+        android:layout_marginLeft="20dp"
+        android:text="현재 2,400 평창코인을 획득하였습니다." />
 
-    <Button
-        android:id="@+id/photoBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/fb"
-        android:layout_toEndOf="@+id/fb"
-        android:layout_toRightOf="@+id/fb"
-        android:background="#ffffff"
-        android:layout_marginLeft="10dp"
-        android:text="포토북 신청" />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/imageView"
-        android:background="@drawable/pylogo"
-        android:scaleType="fitCenter"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="400dp"
+        android:layout_height="240dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/fb" />
+        android:layout_marginTop="10dp"
+        android:background="@drawable/pylogo"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop" />
+
+    <Button
+        android:id="@+id/fbbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:text="페이스북에 공유하기 "
+        android:textColor="@color/common_plus_signin_btn_text_dark_pressed" />
 
 
-</RelativeLayout>
+</LinearLayout>
